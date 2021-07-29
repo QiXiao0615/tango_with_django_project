@@ -99,7 +99,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'OPTIONS': { 'min_length': 6, }
     },
+    
 ]
 #AUTHENTICATION_BACKENDS = (
 #    'account.views.EmailBackend',
@@ -109,7 +111,12 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-
+PASSWORD_HASHERS = [ 
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher', 
+    'django.contrib.auth.hashers.BCryptPasswordHasher', 
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher', 
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher', 
+]
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
