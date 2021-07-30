@@ -21,7 +21,6 @@ def index(request):
     return render(request, 'rango/index.html', context=context_dict)
 
 def about(request):
-    # Spoiler: now you DO need a context dictionary!
     context_dict = {}
     visitor_cookie_handler(request)
     context_dict['visits'] = request.session['visits']
@@ -64,8 +63,7 @@ def add_page(request, category_name_slug):
         category = Category.objects.get(slug=category_name_slug)
     except:
         category = None
-    
-    # You cannot add a page to a Category that does not exist... DM
+
     if category is None:
         return redirect(reverse('rango:index'))
 
@@ -83,8 +81,7 @@ def add_page(request, category_name_slug):
 
                 return redirect(reverse('rango:show_category', kwargs={'category_name_slug': category_name_slug}))
         else:
-            print(form.errors)  # This could be better done; for the purposes of TwD, this is fine. DM.
-    
+            print(form.errors) 
     context_dict = {'form': form, 'category': category}
     return render(request, 'rango/add_page.html', context=context_dict)
 
